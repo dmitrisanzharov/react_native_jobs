@@ -8,9 +8,18 @@ import {
 	FlatList,
 } from "react-native";
 import PopularJobCard from "../../common/cards/popular/PopularJobCard";
+import useFetch from "../../../hook/useFetch";
+import finalData from '../../../data/finalData';
 
 const Popularjobs = () => {
-	const [isLoading, setIsLoading] = React.useState(false);
+	// const { data, isLoading, error, reFetch } = useFetch("search", {
+	// 	query: "React developer",
+	// 	num_pages: 1,
+	// });
+
+	// console.log('all data', data);
+
+	const isLoading = false;
 
 	return (
 		<View style={styles.mainContainer}>
@@ -29,16 +38,17 @@ const Popularjobs = () => {
 				{isLoading ? (
 					<ActivityIndicator size="large" color="yellow" />
 				) : (
-					<FlatList
-						data={[1, 2, 3, 4, 5, 6, 7, 8]}
-						renderItem={({ item }) => {
-							return <PopularJobCard item={item} />;
-						}}
-            contentContainerStyle={{columnGap: 40}}
-            keyExtractor={item=> item}
-            horizontal
-					/>
-          
+                    <FlatList
+                        data={finalData}
+                        renderItem={({ item }) => {
+                            console.log('item test', item);
+                            return <PopularJobCard item={item} />;
+                        }}
+                        contentContainerStyle={{ columnGap: 40 }}
+                        keyExtractor={(item) => item.job_id}
+                        horizontal
+                    />
+
 				)}
 			</View>
 		</View>
@@ -64,3 +74,5 @@ const styles = StyleSheet.create({
 		padding: 5,
 	},
 });
+
+
