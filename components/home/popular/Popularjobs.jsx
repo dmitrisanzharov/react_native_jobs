@@ -41,7 +41,6 @@ const Popularjobs = () => {
                     <FlatList
                         data={finalData}
                         renderItem={({ item }) => {
-                            console.log('item test', item);
                             return <PopularJobCard item={item} />;
                         }}
                         contentContainerStyle={{ columnGap: 40 }}
